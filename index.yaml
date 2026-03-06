@@ -3,6 +3,16 @@ entries:
   nextjs-app:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-03-06T12:48:26.871669774Z"
+    description: Generic Helm chart for Next.js applications
+    digest: 4db68fdfcb757b45553f01db945532655ef3728e570ecb8ae441fd5005ea0191
+    name: nextjs-app
+    type: application
+    urls:
+    - https://github.com/vmedias/helm-charts/releases/download/nextjs-app-0.1.2/nextjs-app-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2026-03-06T11:56:48.323636+01:00"
     description: Generic Helm chart for Next.js applications
     digest: a212b3200ab03f9739b37fd8bcaebcbb010e3b9a2c394cd434b24c60fe221649
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/vmedias/helm-charts/releases/download/nextjs-app-0.1.1/nextjs-app-0.1.1.tgz
     version: 0.1.1
-generated: "2026-03-06T11:56:48.322884+01:00"
+generated: "2026-03-06T12:48:26.871678751Z"
