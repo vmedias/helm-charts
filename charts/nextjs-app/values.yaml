@@ -18,9 +18,9 @@ containerPort: 3000
 ingress:
   host: my-app.dev.vmedias.fr
   clusterIssuer: letsencrypt-prod
-  tlsSecretName: ""  # auto-généré si vide : <name>-tls
+  tlsSecretName: ""
 
-# Ressources (optionnel)
+# Ressources
 resources:
   requests:
     memory: "128Mi"
@@ -35,6 +35,11 @@ probes:
   initialDelaySeconds: 10
   periodSeconds: 10
 
-# Variables d'environnement
+# Variables d'environnement inline
 env: {}
-# NODE_ENV: production
+
+# Variables d'environnement depuis ConfigMap ou Secret
+envFrom: {}
+# envFrom:
+#   configMapName: my-app-env
+#   secretName: my-app-secrets

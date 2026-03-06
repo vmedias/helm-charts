@@ -23,6 +23,17 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.containerPort }}
+        {{- if .Values.envFrom }}
+        envFrom:
+        {{- if .Values.envFrom.configMapName }}
+        - configMapRef:
+            name: {{ .Values.envFrom.configMapName }}
+        {{- end }}
+        {{- if .Values.envFrom.secretName }}
+        - secretRef:
+            name: {{ .Values.envFrom.secretName }}
+        {{- end }}
+        {{- end }}
         {{- if .Values.env }}
         env:
         {{- range $key, $value := .Values.env }}
