@@ -1,0 +1,40 @@
+# Nom de l'application
+name: my-app
+
+# Image Docker
+image:
+  repository: ghcr.io/vmedias/my-app
+  tag: staging
+  pullPolicy: Always
+  pullSecret: ghcr-secret
+
+# Replicas
+replicas: 2
+
+# Port du container
+containerPort: 3000
+
+# Ingress
+ingress:
+  host: my-app.dev.vmedias.fr
+  clusterIssuer: letsencrypt-prod
+  tlsSecretName: ""  # auto-généré si vide : <name>-tls
+
+# Ressources (optionnel)
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+
+# Probes
+probes:
+  path: /
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+# Variables d'environnement
+env: {}
+# NODE_ENV: production

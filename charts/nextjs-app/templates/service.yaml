@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nextjs-app.name" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    app: {{ include "nextjs-app.name" . }}
+  ports:
+  - port: 80
+    targetPort: {{ .Values.containerPort }}
