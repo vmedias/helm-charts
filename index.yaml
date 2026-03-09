@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  laravel-app:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-03-09T11:01:46.629417836Z"
+    description: Generic Helm chart for Laravel applications
+    digest: 06c1d50c4c9c9915b048f5534c03b77345a944bca0941084978a3e6e6383f271
+    name: laravel-app
+    type: application
+    urls:
+    - https://github.com/vmedias/helm-charts/releases/download/laravel-app-0.1.0/laravel-app-0.1.0.tgz
+    version: 0.1.0
   nextjs-app:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -21,4 +32,4 @@ entries:
     urls:
     - https://github.com/vmedias/helm-charts/releases/download/nextjs-app-0.1.1/nextjs-app-0.1.1.tgz
     version: 0.1.1
-generated: "2026-03-06T12:48:26.871678751Z"
+generated: "2026-03-09T11:01:46.629434197Z"
