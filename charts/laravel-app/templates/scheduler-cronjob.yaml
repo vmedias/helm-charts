@@ -1,0 +1,42 @@
+{{- if .Values.scheduler.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "laravel-app.name" . }}-scheduler
+  namespace: {{ .Release.Namespace }}
+spec:
+  schedule: "* * * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          imagePullSecrets:
+          - name: {{ .Values.image.pullSecret }}
+          containers:
+          - name: scheduler
+            image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            command: ["php", "artisan", "schedule:run"]
+            {{- if .Values.envFrom }}
+            envFrom:
+            {{- if .Values.envFrom.configMapName }}
+            - configMapRef:
+                name: {{ .Values.envFrom.configMapName }}
+            {{- end }}
+            {{- if .Values.envFrom.secretName }}
+            - secretRef:
+                name: {{ .Values.envFrom.secretName }}
+            {{- end }}
+            {{- end }}
+            {{- if .Values.env }}
+            env:
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- end }}
+            resources:
+              {{- toYaml .Values.scheduler.resources | nindent 14 }}
+{{- end }}

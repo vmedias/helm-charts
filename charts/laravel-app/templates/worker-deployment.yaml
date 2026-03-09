@@ -1,0 +1,46 @@
+{{- if .Values.worker.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "laravel-app.name" . }}-worker
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ include "laravel-app.name" . }}-worker
+spec:
+  replicas: {{ .Values.worker.replicas }}
+  selector:
+    matchLabels:
+      app: {{ include "laravel-app.name" . }}-worker
+  template:
+    metadata:
+      labels:
+        app: {{ include "laravel-app.name" . }}-worker
+    spec:
+      imagePullSecrets:
+      - name: {{ .Values.image.pullSecret }}
+      containers:
+      - name: worker
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command: {{ toJson .Values.worker.command }}
+        {{- if .Values.envFrom }}
+        envFrom:
+        {{- if .Values.envFrom.configMapName }}
+        - configMapRef:
+            name: {{ .Values.envFrom.configMapName }}
+        {{- end }}
+        {{- if .Values.envFrom.secretName }}
+        - secretRef:
+            name: {{ .Values.envFrom.secretName }}
+        {{- end }}
+        {{- end }}
+        {{- if .Values.env }}
+        env:
+        {{- range $key, $value := .Values.env }}
+        - name: {{ $key }}
+          value: {{ $value | quote }}
+        {{- end }}
+        {{- end }}
+        resources:
+          {{- toYaml .Values.worker.resources | nindent 10 }}
+{{- end }}
