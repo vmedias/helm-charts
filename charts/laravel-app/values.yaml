@@ -44,6 +44,15 @@ envFrom: {}
 #   configMapName: my-app-env
 #   secretName: my-app-secrets
 
+# Volumes (PVC)
+volumes: []
+# volumes:
+#   - name: storage
+#     claimName: my-app-storage
+#     mounts:
+#       - mountPath: /var/www/html/storage
+#         subPath: storage
+
 # Worker de queue Laravel
 worker:
   enabled: false

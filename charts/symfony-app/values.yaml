@@ -44,6 +44,15 @@ envFrom: {}
 #   configMapName: my-app-env
 #   secretName: my-app-secrets
 
+# Volumes (PVC)
+volumes: []
+# volumes:
+#   - name: storage
+#     claimName: my-app-storage
+#     mounts:
+#       - mountPath: /var/www/html/var
+#         subPath: var
+
 # Worker Symfony Messenger (php bin/console messenger:consume)
 worker:
   enabled: false

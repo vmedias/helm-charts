@@ -43,4 +43,25 @@ spec:
         {{- end }}
         resources:
           {{- toYaml .Values.worker.resources | nindent 10 }}
+        {{- if .Values.volumes }}
+        volumeMounts:
+        {{- range .Values.volumes }}
+        {{- $name := .name }}
+        {{- range .mounts }}
+        - name: {{ $name }}
+          mountPath: {{ .mountPath }}
+          {{- if .subPath }}
+          subPath: {{ .subPath }}
+          {{- end }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
+      {{- if .Values.volumes }}
+      volumes:
+      {{- range .Values.volumes }}
+      - name: {{ .name }}
+        persistentVolumeClaim:
+          claimName: {{ .claimName }}
+      {{- end }}
+      {{- end }}
 {{- end }}

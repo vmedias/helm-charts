@@ -55,3 +55,24 @@ spec:
             port: {{ .Values.containerPort }}
           initialDelaySeconds: {{ .Values.probes.initialDelaySeconds }}
           periodSeconds: {{ .Values.probes.periodSeconds }}
+        {{- if .Values.volumes }}
+        volumeMounts:
+        {{- range .Values.volumes }}
+        {{- $name := .name }}
+        {{- range .mounts }}
+        - name: {{ $name }}
+          mountPath: {{ .mountPath }}
+          {{- if .subPath }}
+          subPath: {{ .subPath }}
+          {{- end }}
+        {{- end }}
+        {{- end }}
+        {{- end }}
+      {{- if .Values.volumes }}
+      volumes:
+      {{- range .Values.volumes }}
+      - name: {{ .name }}
+        persistentVolumeClaim:
+          claimName: {{ .claimName }}
+      {{- end }}
+      {{- end }}

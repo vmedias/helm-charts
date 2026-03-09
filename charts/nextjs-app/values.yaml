@@ -43,3 +43,12 @@ envFrom: {}
 # envFrom:
 #   configMapName: my-app-env
 #   secretName: my-app-secrets
+
+# Volumes (PVC)
+volumes: []
+# volumes:
+#   - name: data
+#     claimName: my-app-data
+#     mounts:
+#       - mountPath: /app/data
+#         subPath: data
