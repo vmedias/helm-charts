@@ -32,4 +32,15 @@ entries:
     urls:
     - https://github.com/vmedias/helm-charts/releases/download/nextjs-app-0.1.1/nextjs-app-0.1.1.tgz
     version: 0.1.1
-generated: "2026-03-09T11:01:46.629434197Z"
+  symfony-app:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-03-09T17:01:39.440327838Z"
+    description: Generic Helm chart for Symfony applications
+    digest: 97d055f8a594af7666fbeb3c0282e9a79c3c52841227baf7c9c64e261d4bbb54
+    name: symfony-app
+    type: application
+    urls:
+    - https://github.com/vmedias/helm-charts/releases/download/symfony-app-0.1.0/symfony-app-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-03-09T17:01:39.4403397Z"
