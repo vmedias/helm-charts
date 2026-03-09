@@ -3,6 +3,16 @@ entries:
   laravel-app:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-03-09T19:02:38.411988944Z"
+    description: Generic Helm chart for Laravel applications
+    digest: 826fe45cf8640742b39cb00bad81b2db70fe641638f40e02d24e9f0fa00c9f28
+    name: laravel-app
+    type: application
+    urls:
+    - https://github.com/vmedias/helm-charts/releases/download/laravel-app-0.1.2/laravel-app-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2026-03-09T11:01:46.629417836Z"
     description: Generic Helm chart for Laravel applications
     digest: 06c1d50c4c9c9915b048f5534c03b77345a944bca0941084978a3e6e6383f271
@@ -12,6 +22,16 @@ entries:
     - https://github.com/vmedias/helm-charts/releases/download/laravel-app-0.1.0/laravel-app-0.1.0.tgz
     version: 0.1.0
   nextjs-app:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2026-03-09T19:02:38.608184297Z"
+    description: Generic Helm chart for Next.js applications
+    digest: 31d4b9b72a943d5a604f4af5e17e4890d9e31d411ed7dbf0ee2a8f128bcff7ec
+    name: nextjs-app
+    type: application
+    urls:
+    - https://github.com/vmedias/helm-charts/releases/download/nextjs-app-0.1.4/nextjs-app-0.1.4.tgz
+    version: 0.1.4
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2026-03-06T12:48:26.871669774Z"
@@ -35,6 +55,16 @@ entries:
   symfony-app:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2026-03-09T19:02:38.80880363Z"
+    description: Generic Helm chart for Symfony applications
+    digest: 54443d1e98ea001a54e752e96358d223a3cc1f0df5227714ce1bc1d8289a3774
+    name: symfony-app
+    type: application
+    urls:
+    - https://github.com/vmedias/helm-charts/releases/download/symfony-app-0.1.2/symfony-app-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2026-03-09T17:01:39.440327838Z"
     description: Generic Helm chart for Symfony applications
     digest: 97d055f8a594af7666fbeb3c0282e9a79c3c52841227baf7c9c64e261d4bbb54
@@ -43,4 +73,4 @@ entries:
     urls:
     - https://github.com/vmedias/helm-charts/releases/download/symfony-app-0.1.0/symfony-app-0.1.0.tgz
     version: 0.1.0
-generated: "2026-03-09T17:01:39.4403397Z"
+generated: "2026-03-09T19:02:38.808829909Z"
