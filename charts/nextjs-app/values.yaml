@@ -6,7 +6,9 @@ image:
   repository: ghcr.io/vmedias/my-app
   tag: staging
   pullPolicy: Always
-  pullSecret: ghcr-secret
+  # Vide par défaut : le pull ghcr passe par registries.yaml au niveau node k3s.
+  # Renseigner uniquement si pull via un Secret docker-registry dans le namespace.
+  pullSecret: ""
 
 # Replicas
 replicas: 2
