@@ -1,0 +1,15 @@
+{{- if and .Values.envFrom .Values.envFrom.configMapName }}
+{{- if not (lookup "v1" "ConfigMap" .Release.Namespace .Values.envFrom.configMapName) }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.envFrom.configMapName }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ include "laravel-app.name" . }}
+  annotations:
+    helm.sh/resource-policy: keep
+data:
+  PLACEHOLDER: "changeme"
+{{- end }}
+{{- end }}

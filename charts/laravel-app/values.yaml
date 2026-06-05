@@ -39,6 +39,9 @@ probes:
 env: {}
 
 # Variables d'environnement depuis ConfigMap ou Secret
+# Si configMapName / secretName est renseigné et que la ressource n'existe pas
+# encore dans le cluster, le chart la crée avec une donnée factice (PLACEHOLDER).
+# Ensuite il n'y touche plus (helm.sh/resource-policy: keep) : éditer manuellement.
 envFrom: {}
 # envFrom:
 #   configMapName: my-app-env
