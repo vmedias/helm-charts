@@ -16,8 +16,10 @@ spec:
       labels:
         app: {{ include "symfony-app.name" . }}-worker
     spec:
+      {{- if .Values.image.pullSecret }}
       imagePullSecrets:
       - name: {{ .Values.image.pullSecret }}
+      {{- end }}
       containers:
       - name: worker
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

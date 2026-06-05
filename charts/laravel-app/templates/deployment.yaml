@@ -15,8 +15,10 @@ spec:
       labels:
         app: {{ include "laravel-app.name" . }}
     spec:
+      {{- if .Values.image.pullSecret }}
       imagePullSecrets:
       - name: {{ .Values.image.pullSecret }}
+      {{- end }}
       containers:
       - name: {{ include "laravel-app.name" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

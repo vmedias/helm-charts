@@ -16,8 +16,10 @@ spec:
       labels:
         app: {{ include "laravel-app.name" . }}-worker
     spec:
+      {{- if .Values.image.pullSecret }}
       imagePullSecrets:
       - name: {{ .Values.image.pullSecret }}
+      {{- end }}
       containers:
       - name: worker
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
