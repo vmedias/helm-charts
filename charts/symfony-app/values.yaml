@@ -18,9 +18,21 @@ containerPort: 80
 
 # Ingress
 ingress:
-  host: my-app.dev.vmedias.fr
   clusterIssuer: letsencrypt-prod
+
+  # Mono-domaine (rétro-compatible)
+  host: my-app.dev.vmedias.fr
   tlsSecretName: ""
+
+  # Multi-domaines : si renseigné, remplace `host`.
+  # Sans tlsSecretName -> les hosts partagent un seul cert SAN (<name>-tls).
+  # Avec tlsSecretName -> ce host a son propre cert (séparation possible).
+  hosts: []
+  # hosts:
+  #   - host: app.vmedias.fr
+  #   - host: www.vmedias.fr
+  #   - host: legacy.vmedias.fr
+  #     tlsSecretName: legacy-vmedias-fr-tls
 
 # Ressources
 resources:

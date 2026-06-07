@@ -1,24 +1,43 @@
+{{- $fullName := include "nextjs-app.name" . -}}
+{{- $defaultSecret := include "nextjs-app.tlsSecret" . -}}
+{{- $hosts := .Values.ingress.hosts -}}
+{{- if not $hosts }}
+{{-   $hosts = list (dict "host" .Values.ingress.host) -}}
+{{- end }}
+{{- /* Regroupe les hosts par secret TLS : ceux sans tlsSecretName partagent un cert SAN, les autres ont leur propre cert */ -}}
+{{- $groups := dict -}}
+{{- range $hosts }}
+{{-   $secret := .tlsSecretName | default $defaultSecret -}}
+{{-   $existing := index $groups $secret | default (list) -}}
+{{-   $groups = set $groups $secret (append $existing .host) -}}
+{{- end }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "nextjs-app.name" . }}
+  name: {{ $fullName }}
   namespace: {{ .Release.Namespace }}
   annotations:
     cert-manager.io/cluster-issuer: {{ .Values.ingress.clusterIssuer }}
 spec:
   ingressClassName: traefik
   tls:
+  {{- range $secret, $hostList := $groups }}
   - hosts:
-    - {{ .Values.ingress.host }}
-    secretName: {{ include "nextjs-app.tlsSecret" . }}
+    {{- range $hostList }}
+    - {{ . }}
+    {{- end }}
+    secretName: {{ $secret }}
+  {{- end }}
   rules:
-  - host: {{ .Values.ingress.host }}
+  {{- range $hosts }}
+  - host: {{ .host }}
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: {{ include "nextjs-app.name" . }}
+            name: {{ $fullName }}
             port:
               number: 80
+  {{- end }}
