@@ -34,6 +34,19 @@ ingress:
   #   - host: legacy.vmedias.fr
   #     tlsSecretName: legacy-vmedias-fr-tls
 
+  # Redirections 301 : domaines alternatifs renvoyés vers redirectTarget.
+  # Crée un Middleware Traefik (redirectRegex, permanent=true) + un 2e Ingress qui
+  # termine le TLS puis 301 vers redirectTarget en conservant path + query.
+  # Sans tlsSecretName -> cert SAN partagé (<name>-redirect-tls).
+  # Avec tlsSecretName -> ce host de redirection a son propre cert.
+  redirectHosts: []
+  # redirectHosts:
+  #   - host: cotekota.com
+  #   - host: www.cotekota.com
+  #   - host: legacy.cotekota.com
+  #     tlsSecretName: legacy-cotekota-com-tls
+  redirectTarget: "https://www.cotekota.fr"
+
 # Ressources
 resources:
   requests:
