@@ -24,6 +24,13 @@ ingress:
   host: my-app.dev.vmedias.fr
   tlsSecretName: ""
 
+  # Basic auth HTTP (Traefik) : protège l'ingress principal pour éviter l'accès public
+  # et les crawls (staging). Mot de passe en clair ici, hashé en bcrypt à la génération.
+  basicAuth:
+    enabled: false
+    username: admin
+    password: changeme
+
   # Multi-domaines : si renseigné, remplace `host`.
   # Sans tlsSecretName -> les hosts partagent un seul cert SAN (<name>-tls).
   # Avec tlsSecretName -> ce host a son propre cert (séparation possible).
